@@ -39,6 +39,7 @@ module.exports = class Round {
 		this.time = this.roundTime;
 		this.intermission = false;
 		this.ended = false;
+		//console.log("Round Ended");
 	}
 	differencePack(round) {
 		if (!round) {

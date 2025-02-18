@@ -191,6 +191,22 @@ const Character = {
 			desc: 'Get extra information on your screen',
 		},
 	},
+
+	Parvum: {
+		Color: '#b52626',
+		ArrowCdColor: '#751717',
+		Name: 'Parvum',
+		Passive: null,
+		Ability: { 
+			name: 'Small-Size',
+		},
+		Html: {
+			color: '#b52626',
+			nameColor: '#b52626',
+			name: 'Parvum',
+			desc: 'Smaller size helps to avoid attacks',
+		},
+	},
 //   ZeroTix: {
 // 		Color: '#fce0bd',
 //  		ArrowCdColor: '#fce0bd',

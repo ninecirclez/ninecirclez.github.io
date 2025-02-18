@@ -1,7 +1,7 @@
 const { createInput } = require('../shared/func.js');
 const Character = require('../shared/character.js');
 
-// console.log(createInput)
+//console.log(createInput)
 
 module.exports = class Player {
 	constructor(id, arena, obstacles, character = 'Default', isClone=false) {
@@ -222,6 +222,9 @@ module.exports = class Player {
 			obj.canFakeArrow = !this.fakedArrowLastTime && !this.fakedArrow;
 		}
 
+		if (this.character.Name === 'Parvum') {
+			obj.radius = 25;
+		}
 
 		return obj;
 	}
