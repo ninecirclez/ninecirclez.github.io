@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Death Arrows 2</title>
+	<meta name="title" content="Death Arrows 2">
+	<meta name="description" content="An action-packed pvp game where you shoot arrows!">
+
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="https://darrows.herokuapp.com">
+	<meta property="og:title" content="Death Arrows 2">
+	<meta property="og:description" content="An action-packed pvp game where you shoot arrows!">
+
+	<link href="./style.css" rel="stylesheet" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/msgpack-lite/0.1.5/msgpack.min.js" integrity="sha512-iklLb1eedGq+n6CU+Nknfyw0mNC9bc7g99ObbqqsaL8IZNeEk/eAfvn2B27WqhBo9eKukU2DXEP0kUqCCRWRBw=="
+	 crossorigin="anonymous" referrerpolicy="no-referrer">
+
+	</script>
+
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+	<div class="menu">
+		<!-- <span class="version"></span> -->
+		<div class="menu-items invis">
+			<div class="main">
+				<span class="title"><span class="death-box">Death</span><span class="arrow-box">Arrows</span></span>
+				<span class="darrow-hero"></span>
+				<span class="darrow-hero-name"></span>
+				<span class="darrow-hero-desc"></span>
+				<span class="blue-box">created by ZeroTix</span>
+			</div>
+			
+			<button class="darrow-hero-left darrow-hero-button"><span class="darrow-left">&lt;</span></button>
+			<button class="darrow-hero-right darrow-hero-button"><span class="darrow-right">&gt;</span></button>
+			<button class="play" autofocus>play</button>
+			<a class="discord" href="https://discord.gg/VMXbcctvbY" target="_blank">Discord</a>
+			<a class="editor" href="https://darrows-editor.zerotixdev.repl.co" target="_blank">Map Editor</a>
+			<!-- <span class="highscore">Loading...</span> -->
+			</div>
+			<span class="top-left-box"></span>
+			<span class="bottom-right-box"></span>
+		
+	</div>
+
+	<div class="game hidden">
+		<canvas class="game-canvas"></canvas>
+		<div class="gui">
+			<div class="chatDiv hidden">
+				<div class="chat-over"></div>
+				<input class="chat" type="text" autocomplete="off" maxlength="59" spellcheck="false">
+			</div>
+			<div class="chat-div">
+				<div class="chat-message"><span class="rainbow">[SERVER]</span>: Welcome! Use /help for info</div>
+			</div>
+			<div class="death-screen hidden">
+				<div class="background-overlay"></div>
+				<!-- <button class="change-hero" onclick="window.location.reload()"e>Change Character</button> -->
+				<div class="space-to-respawn"><span>press <span style="color: #00e1ff">space</span> to respawn</span></div>
+				<div class="stats">
+					<div class="stat">
+						Kills
+						<span class="stat-number kills">69</span>
+					</div>
+					<div class="stat">
+						Deaths
+						<span class="stat-number deaths">96</span>
+					</div>
+					<div class="stat">
+						KDR
+						<span class="stat-number kdr">6.9</span>
+					</div>
+					<div class="stat">
+						Accuracy
+						<span class="stat-number accuracy">69%</span>
+				</div>
+			</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="./ref.js"></script>
+	<script src="./CPlayer.js"></script>
+	<script src="./CArrow.js"></script>
+	<script src="./raycast.js"></script>
+	<script src="shared/createInput.js"></script>
+	<script src="shared/character.js"></script>
+	<script src="./render.js"></script>
+	<script src="./util/processMessage.js"></script>
+	<script src="./util/trackKeys.js"></script>
+	<script src="./util/startGame.js"></script>
+	<script src="./util/general.js"></script>
+	<script src="./lib.js"></script>
+	<script src="./index.js"></script>
+</body>
+
+</html>
