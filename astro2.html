@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Astrophotography Gallery</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #000;
+      color: white;
+    }
+
+    * {
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+      padding: 20px;
+      background-color: #111;
+      justify-content: center;
+    }
+
+    .nav-btn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .dropdown {
+      display: none;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    .dropdown button {
+      margin: 5px;
+      padding: 8px 16px;
+      background-color: #222;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+
+    .gallery {
+      display: none;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .image-card {
+      width: 200px;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .image-card img {
+      width: 100%;
+      border-radius: 10px;
+      border: 2px solid #444;
+      transition: transform 0.2s;
+    }
+
+    .image-card img:hover {
+      transform: scale(1.05);
+    }
+
+    /* MODAL FULL IMAGE VIEW */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.95);
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    .modal-content {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 40px;
+      max-width: 95%;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .modal img {
+      max-width: 90vw;
+      max-height: 80vh;
+      border: 2px solid #666;
+      border-radius: 10px;
+    }
+
+    .description {
+      max-width: 300px;
+      font-size: 16px;
+      text-align: left;
+      color: #ddd;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 30px;
+      color: white;
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav>
+    <button class="nav-btn" onclick="showDropdown('solar')">Solar</button>
+    <button class="nav-btn" onclick="showDropdown('lunar')">Lunar</button>
+    <button class="nav-btn" onclick="showDropdown('other')">Other</button>
+  </nav>
+
+  <!-- Subcategory Dropdowns -->
+  <div id="solar" class="dropdown">
+    <button onclick="showGallery('aurora')">Auroras</button>
+    <button onclick="showGallery('sunspot')">Sunspots</button>
+    <button onclick="showGallery('eclipse1')">Total Eclipse 2024</button>
+    <button onclick="showGallery('widefield1')">Wide Field</button>
+  </div>
+
+  <div id="lunar" class="dropdown">
+    <button onclick="showGallery('eclipse2')">Partial Eclipse 2024</button>
+    <button onclick="showGallery('eclipse3')">Total Eclipse 2025</button>
+    <button onclick="showGallery('full')">Full Moon</button>
+    <button onclick="showGallery('phases')">Phases</button>
+    <button onclick="showGallery('widefield2')">Wide Field</button>
+  </div>
+
+  <div id="other" class="dropdown">
+    <button onclick="showGallery('occult')">Occultations</button>
+    <button onclick="showGallery('planets')">Planets</button>
+    <button onclick="showGallery('equipment')">EQUIPMENT</button>
+  </div>
+
+  <!-- Image Gallery Sections -->
+
+  <!-- SOLAR -->
+  <div id="eclipse1" class="gallery">
+    <div class="image-card" onclick="openModal('Solar/Eclipse/beads_comp.png', 'Bailey\'s Beads', 'Composite image seconds before totality shows the moments right before the Sun completely disappeared. Sunlight spreads throughout the valleys and mountains creating the illusion of beads.', 'April 8, 2024', 'Indianapolis, Indiana', 'Nikon D90 + 700mm')">
+      <img src="thumbs/bailey.png" alt="">
+      <p>Bailey's Beads</p>
+    </div>
+    <div class="image-card" onclick="openModal('Solar/Eclipse/C2diaring.png', 'C2 Diamond Ring', 'Captured ~30 seconds before totality.', 'April 8, 2024', 'Indianapolis, Indiana', 'Nikon D90 + 700mm')">
+      <img src="thumbs/c2diaring.png" alt="">
+      <p>C2 Diamond Ring</p>
+    </div>
+    <div class="image-card" onclick="openModal('Solar/Eclipse/C3diaring.png', 'C3 Diamond Ring', 'Captured ~30 seconds after totality.', 'April 8, 2024', 'Indianapolis, Indiana', 'Nikon D90 + 700mm')">
+      <img src="thumbs/c3diaring.png" alt="">
+      <p>C3 Diamond Ring</p>
+    </div>
+    <div class="image-card" onclick="openModal('Solar/Eclipse/tot.png', 'Totality', 'Captured during the peak of totality.', 'April 8, 2024', 'Indianapolis, Indiana', 'Nikon D90 + 700mm')">
+      <img src="thumbs/tot.png" alt="">
+      <p>Totality</p>
+    </div>
+    <div class="image-card" onclick="openModal('Solar/Eclipse/exposedtot.png', 'Exposed Totality', 'Prolonged exposure during totality to enhance details in the corona.', 'April 8, 2024', 'Indianapolis, Indiana', 'Nikon D90 + 700mm')">
+      <img src="thumbs/etot.png" alt="">
+      <p>Exposed Totality</p>
+    </div>
+    <div class="image-card" onclick="openModal('Solar/Eclipse/chromo.png', 'Chromosphere', 'Shortened exposure during totality to capture solar prominences. The prominence towards the bottom of the image was visible with the naked eye as an exteremely bright dot.', 'April 8, 2024', 'Indianapolis, Indiana', 'Nikon D90 + 700mm')">
+      <img src="thumbs/chrome.png" alt="">
+      <p>Chromosphere</p>
+    </div>
+    <div class="image-card" onclick="openModal('Solar/Eclipse/matrix.png', 'Eclipse Matrix', 'Composite image capturing partial phases and totality.', 'April 8, 2024', 'Indianapolis, Indiana', 'Nikon D90 + 700mm + Solar Filter')">
+      <img src="thumbs/fm.png" alt="">
+      <p>Eclipse Matrix</p>
+    </div>
+  </div>
+
+  <div id="sunspot" class="gallery">
+    <div class="image-card" onclick="openModal('Solar/Sunspots/timelapse.gif', 'Sunspot Timelapse', 'Three frame timelapse showing the rotation of the sun.', 'October 9-10, 2024', 'Chicago, Illinois', 'Nikon D90 + 700mm + Solar Filter')">
+      <img src="thumbs/ss.png" alt="">
+      <p>Sunspot Timelapse</p>
+    </div>
+    <div class="image-card" onclick="openModal('Solar/Sunspots/oct2024.png', 'Large Sunspot Groups', 'Note that these huge sunspots caused a G5 solar storm on the following nights.', 'October 10, 2024', 'Chicago, Illinois', 'Nikon D90 + 700mm + Solar Filter')">
+      <img src="thumbs/oct24ss.png" alt="">
+      <p>10 October 2024 Sunspot</p>
+    </div>
+    <div class="image-card" onclick="openModal('Solar/Sunspots/ar3664.png', 'AR3664', 'Note that this huge sunspot caused a G5 solar storm on the following night.', 'May 10, 2024', 'Chicago, Illinois', 'Nikon D90 + 700mm + Solar Filter')">
+      <img src="thumbs/ar.png" alt="">
+      <p>AR3664</p>
+    </div>
+    <div class="image-card" onclick="openModal('Solar/Sunspots/ar3664-zoom.png', 'AR3664 Zoom', 'This sunspot stretched ~11 Earths wide!', 'May 10, 2024', 'Chicago, Illinois', 'Nikon D90 + 700mm + Solar Filter')">
+      <img src="thumbs/ar2.png" alt="">
+      <p>AR3664</p>
+    </div>
+  </div>
+
+  <div id="widefield1" class="gallery">
+    <div class="image-card" onclick="openModal('Solar/Wide Field/Beacon.jpg', 'Beacon of Light', 'The sun appears to engulf the top of a minaret, making it look similar to the Eye of Sauron from LOTR.', 'December 27, 2024', 'Madinah, Saudi', 'Google Pixel 5')">
+      <img src="thumbs/beacon.png" alt="">
+      <p>Beacon of Light</p>
+    </div>
+    <div class="image-card" onclick="openModal('Solar/Wide Field/makkah1.jpg', 'Makkah Sunset 1', 'Sky displaying many different colors of the rainbow as the sun sets.', 'December 22, 2024', 'Makkah, Saudi', 'Google Pixel 5')">
+      <img src="thumbs/m1.png" alt="">
+      <p>Makkah Sunset 1</p>
+    </div>
+    <div class="image-card" onclick="openModal('Solar/Wide Field/makkah2.jpg', 'Makkah Sunset 2', 'Sun turning red as it sets.', 'December 22, 2024', 'Makkah, Saudi', 'Google Pixel 5')">
+      <img src="thumbs/m2.png" alt="">
+      <p>Makkah Sunset 2</p>
+    </div>
+    <div class="image-card" onclick="openModal('Solar/Wide Field/makkah3.jpg', 'Makkah Sunset 3', 'Sun peaking from behind some Arabian mountains.', 'December 25, 2024', 'Makkah, Saudi', 'Google Pixel 5')">
+      <img src="thumbs/m3.png" alt="">
+      <p>Makkah Sunset 3</p>
+    </div>
+    <div class="image-card" onclick="openModal('Solar/Wide Field/Sunset.png', 'Sunset', 'Sun behind the trees minutes before sunset.', 'November 2, 2024', 'Chicago, Illinois', 'Nikon D90')">
+      <img src="thumbs/sunset.png" alt="">
+      <p>Sunset</p>
+    </div>
+  </div>
+
+  <!-- LUNAR -->
+  <div id="eclipse2" class="gallery">
+    <div class="image-card" onclick="openModal('Lunar/Eclipse Sept2024/sept24partial.png', 'Partial Lunar Eclipse', 'About 9% of the Moon was eclipsed at peak coverage.', 'March 14, 2025', 'Chicago, Illinois', 'Nikon D90 + 700mm')">
+      <img src="thumbs/sept24partial.png" alt="">
+      <p>Partial Lunar Eclipse</p>
+    </div>
+  </div>
+
+  <div id="eclipse3" class="gallery">
+    <div class="image-card" onclick="openModal('Lunar/Eclipse Mar2025/mar2025total.png', 'Blood Moon', 'A total lunar eclipse actually causes the Moon to become much, much darker than usual. I did not realize how dark it became until it actually happened. A much longer exposure is required to take a proper photo.', 'March 14, 2025', 'Chicago, Illinois', 'Nikon D90 + 700mm')">
+      <img src="thumbs/mar2025total.png" alt="">
+      <p>Blood Moon</p>
+    </div>
+    <div class="image-card" onclick="openModal('Lunar/Eclipse Mar2025/totComp.png', 'Totality Matrix', 'Composite of totality slowly occuring.', 'March 14, 2025', 'Chicago, Illinois', 'Nikon D90 + 700mm')">
+      <img src="thumbs/totComp.png" alt="">
+      <p>Totality Matrix</p>
+    </div>
+    <div class="image-card" onclick="openModal('Lunar/Eclipse Mar2025/wideComp.png', 'Eclipse Matrix', 'Wide field composite as the Moon plunged into darkness.', 'March 13-14, 2025', 'Chicago, Illinois', 'Nikon D90')">
+      <img src="thumbs/wideComp.png" alt="">
+      <p>Eclipse Matrix</p>
+    </div>
+  </div>
+
+  <div id="full" class="gallery">
+    <div class="image-card" onclick="openModal('Lunar/Full/full.png', 'Full Moon', 'My most detailed image of the moon, with each pixel representing ~2.8 km² of the lunar surface.', 'October 17, 2024', 'Chicago, Illinois', 'Nikon D90 + 700mm')">
+      <img src="thumbs/full.png" alt="">
+      <p>Full Moon</p>
+    </div>
+    <div class="image-card" onclick="openModal('Lunar/Full/mineral.png', 'Mineral Moon', 'The Moon\'s \'true colors\' not visible to the naked eye can be brought out via post-production on image software on a computer.', 'October 17, 2024', 'Chicago, Illinois', 'Nikon D90 + 700mm')">
+      <img src="thumbs/mineral.png" alt="">
+      <p>Mineral Moon</p>
+    </div>
+  </div>
+
+  <div id="phases" class="gallery">
+    <div class="image-card" onclick="openModal('Lunar/Phases/0.png', 'Waxing Crescent', 'On the 2nd night of Ramadan.', 'March 1, 2025', 'Chicago, Illinois', 'Nikon D90 + 700mm')">
+      <img src="thumbs/0.png" alt="">
+      <p>Waxing Crescent</p>
+    </div>
+    <div class="image-card" onclick="openModal('Lunar/Phases/1.png', 'Waxing Crescent', '', 'October 27, 2024', 'Chicago, Illinois', 'Nikon D90 + 700mm')">
+      <img src="thumbs/1.png" alt="">
+      <p>Waxing Crescent</p>
+    </div>
+    <div class="image-card" onclick="openModal('Lunar/Phases/2.png', 'First Quarter', '', 'November 8, 2024', 'Chicago, Illinois', 'Nikon D90 + 700mm')">
+      <img src="thumbs/2.png" alt="">
+      <p>First Quarter</p>
+    </div>
+    <div class="image-card" onclick="openModal('Lunar/Phases/3.png', 'Waxing Gibbous', '', 'November 11, 2024', 'Chicago, Illinois', 'Nikon D90 + 700mm')">
+      <img src="thumbs/3.png" alt="">
+      <p>Waxing Gibbous</p>
+    </div>
+    <div class="image-card" onclick="openModal('Lunar/Phases/4.png', 'Waxing Gibbous', '(Mineral)', 'February 9, 2025', 'Chicago, Illinois', 'Nikon D90 + 700mm')">
+      <img src="thumbs/4.png" alt="">
+      <p>Waxing Gibbous</p>
+    </div>
+    <div class="image-card" onclick="openModal('Lunar/Phases/handle.png', 'Golden Handle', 'The peaks of Montes Jura receive light, while the ground beneath it does not resulting in this handle like appearance. ', 'November 11, 2024', 'Chicago, Illinois', 'Nikon D90 + 700mm')">
+      <img src="thumbs/handle.png" alt="">
+      <p>Golden Handle</p>
+    </div>
+  </div>
+
+  <div id="widefield2" class="gallery">
+    <div class="image-card" onclick="openModal('Lunar/Wide Field/makkah1.jpg', 'Makkah Crescent', 'This photograph was taken before sunset, but you can still see Venus above the Moon!', 'January 3, 2025', 'Makkah', 'Google Pixel 5')">
+      <img src="thumbs/ma1.png" alt="">
+      <p>Makkah Crescent</p>
+    </div>
+    <div class="image-card" onclick="openModal('Lunar/Wide Field/moonrise.jpg', 'Moonrise', 'When the Moon rises, it appears orange or yellow because light has to travel through more atmosphere.', 'June 9, 2025', 'Chicago, Illinois', 'Galaxy S24')">
+      <img src="thumbs/moonrise.png" alt="">
+      <p>Moonrise</p>
+    </div>
+    <div class="image-card" onclick="openModal('Lunar/Wide Field/SunkenMoon.png', 'Sunken Moon', 'The Moon hiding behind the clouds.', 'June 4, 2025', 'Chicago, Illinois', 'Nikon D90')">
+      <img src="thumbs/sunken.png" alt="">
+      <p>Sunken Moon</p>
+    </div>
+  </div>
+
+  <!-- OTHER -->
+  <div id="occult" class="gallery">
+    <div class="image-card" onclick="openModal('Other/Occultations/marsLO.png', 'Mars Occultation', 'The little red smudge half way behind the Moon is Mars. A few minutes after this was taken, Mars completely vanished.', 'January 13, 2025', 'Chicago', 'Nikon D90 + 700mm')">
+      <img src="thumbs/marsLO.png" alt="">
+      <p>Mars Occultation</p>
+    </div>
+    <div class="image-card" onclick="openModal('Other/Occultations/timelapse.gif', 'Mars Occultation Timelapse', 'These 11 frames show Mars disappearing behind the Moon across the timespan of 40 minutes.', 'January 13, 2025', 'Chicago, Illinois', 'Nikon D90 + 700mm')">
+      <img src="thumbs/marsLO.png" alt="">
+      <p>Mars Occultation Timelapse</p>
+    </div>
+    <div class="image-card" onclick="openModal('Other/Occultations/neptuneLC.png', 'Neptune Moon Conjunction', 'To capture this shot, a very high ISO and exposure time was needed because the Moon was so close to Neptune. In fact, Neptune was about to be occulted soon after this image was taken.', 'November 11, 2024', 'Chicago, Illinois', 'Nikon D90 + 700mm')">
+      <img src="thumbs/neptuneLC.png" alt="">
+      <p>Neptune Moon Conjunction</p>
+    </div>
+  </div>
+
+  <div id="planets" class="gallery">
+    <!-- Venus Phase 1, 2, 3 -->
+    <!-- Mars? -->
+    <!-- Jupiter -->
+    <!-- Jupiter w/ Moons-->
+    <!-- Saturn -->
+    <div class="image-card" onclick="openModal('Other/Planets/2Venus.png', 'Venus', 'Venus quarter phase.', 'January 17, 2025', 'Chicago, Illinois', 'Nikon D90 + 700mm')">
+      <img src="thumbs/2Venus.png" alt="">
+      <p>Venus</p>
+    </div>
+    <div class="image-card" onclick="openModal('Other/Planets/4Mars.png', 'Mars', 'Mars.', 'January 13, 2025', 'Chicago, Illinois', 'Nikon D90 + 700mm')">
+      <img src="thumbs/4Mars.png" alt="">
+      <p>Mars</p>
+    </div>
+    <div class="image-card" onclick="openModal('Other/Planets/5Jupiter.png', 'Jupiter', 'Jupiter opposition.', 'December 6, 2024', 'Chicago, Illinois', 'Nikon D90 + 700mm')">
+      <img src="thumbs/5Jupiter.png" alt="">
+      <p>Jupiter</p>
+    </div>
+    <div class="image-card" onclick="openModal('Other/Planets/6Saturn.png', 'Saturn', 'Saturn with a barlow lens, months before the rings would completely disappear from view.', 'August 2, 2024', 'Chicago, Illinois', 'Nikon D90 + 700mm + 3x Barlow Lens')">
+      <img src="thumbs/6Saturn.png" alt="">
+      <p>Saturn</p>
+    </div>
+    <div class="image-card" onclick="openModal('Other/Planets/8Neptune.png', 'Neptune', 'Taken during a conjunction with the Moon.', 'November 11, 2024', 'Chicago, Illinois', 'Nikon D90 + 700mm')">
+      <img src="thumbs/8Neptune.png" alt="">
+      <p>Neptune</p>
+    </div>
+    <div class="image-card" onclick="openModal('Other/Planets/venusPhases.png', 'Venus Phases', 'Venus also goes through phases like the Moon.', 'December 12, 2024 + January 17, 2025 + February 28, 2025', 'Chicago, Illinois', 'Nikon D90 + 700mm')">
+      <img src="thumbs/venusPhases.png" alt="">
+      <p>Venus Phases</p>
+    </div>
+  </div>
+
+  <div id="equipment" class="gallery">
+    <div class="image-card" onclick="openModal('Other/Equipment/telescope.png', 'Celestron Astromaster LT70', '[Information About Scope]', 'N/A', 'N/A', 'N/A')">
+      <img src="images/telescope.jpg" alt="">
+      <p>Celestron Astromaster LT70</p>
+    </div>
+    <div class="image-card" onclick="openModal('Other/Equipment/camera.png', 'Nikon D90', '[Information About Camera]', 'N/A', 'N/A', 'N/A')">
+      <img src="images/camera.jpg" alt="">
+      <p>Nikon D90</p>
+    </div>
+    <div class="image-card" onclick="openModal('Other/Equipment/filter.png', 'Solar Filter', '1/1000th of 1% of light enters.', 'N/A', 'N/A', 'N/A')">
+      <img src="images/filter.jpg" alt="">
+      <p>Solar Filter</p>
+    </div>
+  </div>
+
+  <!-- COMET? -->
+
+  <!-- Full Image Modal -->
+  <div class="modal" id="modal">
+    <button class="close-btn" onclick="closeModal()">✖</button>
+    <div class="modal-content">
+      <img id="modal-img" src="" alt="">
+      <div class="description" id="modal-desc"></div>
+    </div>
+  </div>
+
+
+  <!-- JavaScript -->
+  <script>
+    function showDropdown(id) {
+      document.querySelectorAll('.dropdown').forEach(el => el.style.display = 'none');
+      document.querySelectorAll('.gallery').forEach(el => el.style.display = 'none');
+      document.getElementById(id).style.display = 'flex';
+    }
+
+    function showGallery(id) {
+      document.querySelectorAll('.gallery').forEach(el => el.style.display = 'none');
+      document.getElementById(id).style.display = 'flex';
+    }
+
+    function openModal(imgSrc, title, description, date, location, equipment) {
+      document.getElementById('modal-img').src = imgSrc;
+      document.getElementById('modal-desc').innerHTML = `
+        <h2>${title}</h2>
+        <p><strong>Date:</strong> ${date}</p>
+        <p><strong>Location:</strong> ${location}</p>
+        <p><strong>Equipment:</strong> ${equipment}</p>
+        <p>${description}</p>
+      `;
+      document.getElementById('modal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+      document.getElementById('modal-img').src = '';
+      document.getElementById('modal-desc').innerHTML = '';
+    }
+  </script>
+</body>
+</html>
