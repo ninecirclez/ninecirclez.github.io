@@ -53,6 +53,26 @@
       cursor: pointer;
     }
 
+    .welcome-section {
+      background-image: url('bgimg1.png'); /* Replace with your image path */
+      background-size: cover;
+      background-position: center;
+      height: calc(100vh - 60px); /* adjust for nav height */
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 40px;
+    }
+
+.welcome-text {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 20px;
+  max-width: 400px;
+  color: white;
+  border-radius: 10px;
+}
+
+
     .gallery {
       display: none;
       flex-wrap: wrap;
@@ -138,6 +158,17 @@
     <button class="nav-btn" onclick="showDropdown('other')">Other</button>
   </nav>
 
+  <div id="welcome" class="welcome-section">
+    <div class="welcome-text">
+      <h1>Astrophotography Gallery</h1>
+      <p>Welcome to Arsal Kashif's collection of images of the Sun, Moon and more! All of these images were taken by him using basic equipment (eg. Nikon d90, Celestron Astromaster LT70, etc).</p>
+      <br>
+      <p>To navigate the site, simply choose one of the tabs above and you can explore through a vast selection of images from basic wide field shots to detailed images of a total solar eclipse.</p>
+      <br>
+      <p>However, do note that most of the images here are not the full resolution versions. If you wish to use any of these images, please email absolutejunk00@gmail.com, and he will be able to supply you with the full resolution version of the image.</p>
+    </div>
+  </div>
+
   <!-- Subcategory Dropdowns -->
   <div id="solar" class="dropdown">
     <button onclick="showGallery('aurora')">Auroras</button>
@@ -172,7 +203,7 @@
       <img src="thumbs/c2diaring.png" alt="">
       <p>C2 Diamond Ring</p>
     </div>
-    <div class="image-card" onclick="openModal('Solar/Eclipse/C3diaring.png', 'C3 Diamond Ring', 'Captured ~30 seconds after totality.', 'April 8, 2024', 'Indianapolis, Indiana', 'Nikon D90 + 700mm')">
+    <div class="image-card" onclick="openModal('Solar/Eclipse/C3diaring.png', 'C3 Diamond Ring', 'Captured ~30 seconds after totality. Note: This is my favorite image I have ever taken - not to be arrogant, but it just looks spectacular. I am so happy that I was able to capture the Diamond Ring Effect, the Solar Corona and Solar Prominences all in ONE image! However, I will say it looked even BETTER in real life - the experience was genuinely insane.', 'April 8, 2024', 'Indianapolis, Indiana', 'Nikon D90 + 700mm')">
       <img src="thumbs/c3diaring.png" alt="">
       <p>C3 Diamond Ring</p>
     </div>
@@ -245,7 +276,7 @@
   </div>
 
   <div id="eclipse3" class="gallery">
-    <div class="image-card" onclick="openModal('Lunar/Eclipse Mar2025/mar2025total.png', 'Blood Moon', 'A total lunar eclipse actually causes the Moon to become much, much darker than usual. I did not realize how dark it became until it actually happened. A much longer exposure is required to take a proper photo.', 'March 14, 2025', 'Chicago, Illinois', 'Nikon D90 + 700mm')">
+    <div class="image-card" onclick="openModal('Lunar/Eclipse Mar2025/mar2025total.png', 'Blood Moon', 'A total lunar eclipse actually causes the Moon to become much, much darker than usual. I did not realize how dark it became until it actually happened. A much longer exposure was required to take a proper photo.', 'March 14, 2025', 'Chicago, Illinois', 'Nikon D90 + 700mm')">
       <img src="thumbs/mar2025total.png" alt="">
       <p>Blood Moon</p>
     </div>
@@ -390,6 +421,7 @@
   <!-- JavaScript -->
   <script>
     function showDropdown(id) {
+      document.getElementById('welcome').style.display = 'none';
       document.querySelectorAll('.dropdown').forEach(el => el.style.display = 'none');
       document.querySelectorAll('.gallery').forEach(el => el.style.display = 'none');
       document.getElementById(id).style.display = 'flex';
